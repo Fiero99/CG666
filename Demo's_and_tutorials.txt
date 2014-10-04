@@ -1,0 +1,6 @@
+basic sprite creation and scripting: 
+	"Unity 2D Game Tutorial - Part 1 Sprites and You "
+	https://www.youtube.com/watch?v=DZucUpZtg2U
+
+background:
+	http://pixelnest.io/tutorials/2d-game-unity/background-and-camera/
