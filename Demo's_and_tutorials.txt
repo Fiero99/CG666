@@ -4,3 +4,6 @@ basic sprite creation and scripting:
 
 background:
 	http://pixelnest.io/tutorials/2d-game-unity/background-and-camera/
+  
+blender car models:
+  http://nextwavemultimedia.com/html/3dblendermodel.html
