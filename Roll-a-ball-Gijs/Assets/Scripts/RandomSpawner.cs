@@ -11,10 +11,11 @@ public class RandomSpawner : MonoBehaviour
 	public float yRange = 1.0f;
 	public float minSpawnTime = 1.0f;
 	public float maxSpawnTime = 10.0f;
+	public float spawnSpeed = 4.0f;
 	
 	void Start()
 	{
-		InvokeRepeating("SpawnObject", Random.Range(minSpawnTime,maxSpawnTime), 0.3f);
+		InvokeRepeating("SpawnObject", Random.Range(minSpawnTime,maxSpawnTime), spawnSpeed);
 	}
 	
 	void SpawnObject()
@@ -25,6 +26,7 @@ public class RandomSpawner : MonoBehaviour
 		cube.AddComponent<Rigidbody>();
 		Rigidbody rigidcube = cube.rigidbody;
 		Vector3 pos = new Vector3 (0, 1, 0);
-		Rigidbody newObstacle = GameObject.Instantiate(rigidcube,pos, Quaternion.identity) as Rigidbody;
+		cube.transform.position = pos;
+		//Rigidbody newObstacle = GameObject.Instantiate(rigidcube,pos, Quaternion.identity) as Rigidbody;
 	}
 }
