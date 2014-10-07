@@ -28,5 +28,7 @@ public class RandomSpawner : MonoBehaviour
 		Vector3 pos = new Vector3 (0, 1, 0);
 		cube.transform.position = pos;
 		//Rigidbody newObstacle = GameObject.Instantiate(rigidcube,pos, Quaternion.identity) as Rigidbody;
+		cube.renderer.material.color = Color.red;
+		cube.velocity = new Vector3(20, 0, 0);
 	}
 }
