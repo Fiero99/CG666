@@ -10,7 +10,7 @@ public class RandomSpawner : MonoBehaviour
 	public float xRange = 1.0f;
 	public float yRange = 1.0f;
 	public float minSpawnTime = 1.0f;
-	public float maxSpawnTime = 10.0f;
+	public float maxSpawnTime = 2.0f;
 	public float spawnSpeed = 4.0f;
 	
 	void Start()
@@ -29,6 +29,7 @@ public class RandomSpawner : MonoBehaviour
 		cube.transform.position = pos;
 		//Rigidbody newObstacle = GameObject.Instantiate(rigidcube,pos, Quaternion.identity) as Rigidbody;
 		rigidcube.renderer.material.color = Color.red;
-		rigidcube.velocity = new Vector3(20, 0, 0);
+		rigidcube.velocity = new Vector3(30, 0, 0);
 	}
+
 }
