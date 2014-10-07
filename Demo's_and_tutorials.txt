@@ -7,3 +7,6 @@ background:
   
 blender car models:
   http://nextwavemultimedia.com/html/3dblendermodel.html
+  
+main menu tutorial:
+  https://www.youtube.com/watch?v=yjCEGIVj84Q
