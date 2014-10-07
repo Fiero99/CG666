@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -6,7 +7,12 @@ public class PlayerController : MonoBehaviour {
 	private bool isGrounded = true;
 	public float speed;
 	public float JumpSpeed = 100.0f;
-	
+	public Text winText;
+
+	void Start(){
+		winText.gameObject.SetActive(false);
+		}
+
 	void FixedUpdate () {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
@@ -29,5 +35,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			isGrounded = true;
 		}
+		if(hit.gameObject.tag == "WinPlace")
+		{
+			winText.gameObject.SetActive(true);
+
+		}
 	}
+
 }
