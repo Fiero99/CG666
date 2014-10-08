@@ -6,30 +6,39 @@ public class RandomSpawner : MonoBehaviour
 	public GameObject[] spawnObject;    //somehow change this to incorporate multiple gameobject prefabs, will an array support that?
 	
 	//Would I create public variables for each prefab I want to be randomly chosen from, or would those be contained in the array above?
-	
-	public float xRange = 1.0f;
-	public float yRange = 1.0f;
-	public float minSpawnTime = 1.0f;
-	public float maxSpawnTime = 2.0f;
-	public float spawnSpeed = 4.0f;
-	
+	public float minSpawnTime = 0.1f;
+	public float spawnSpeed = 1.0f;
+	public GameObject[] spawns;
+	public Vector3 startloc = new Vector3 (-9, 0.5f, 0);// the starting location of the block
+	public float direction  =  1; // pos = going  right, neg = going left
+
 	void Start()
 	{
-		InvokeRepeating("SpawnObject", Random.Range(minSpawnTime,maxSpawnTime), spawnSpeed);
+		InvokeRepeating("SpawnObject", minSpawnTime, minSpawnTime);
 	}
 	
 	void SpawnObject()
 	{
-		float xOffset = Random.Range(-xRange, xRange);
-		float yOffset = Random.Range(-yRange, yRange);
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		cube.AddComponent<Rigidbody>();
 		Rigidbody rigidcube = cube.rigidbody;
-		Vector3 pos = new Vector3 (0, 1, 0);
-		cube.transform.position = pos;
-		//Rigidbody newObstacle = GameObject.Instantiate(rigidcube,pos, Quaternion.identity) as Rigidbody;
+		rigidcube.tag = ("Vehicle");
+		cube.transform.position = startloc;
 		rigidcube.renderer.material.color = Color.red;
-		rigidcube.velocity = new Vector3(30, 0, 0);
+	}
+
+
+	// find the vehicle objects and move them one step to the direction
+	void Update () {
+		spawns = GameObject.FindGameObjectsWithTag("Vehicle");
+		Vector3 pos = new Vector3 (0, 0.1f, 0);
+
+		for(int i = 0; i < spawns.Length; i++)
+		{
+			spawns[i].transform.eulerAngles = new Vector3(0, 0, 0);
+			spawns[i].transform.Translate(new Vector3 (0.14f, 0, 0)*direction);
+		}
+
 	}
 
 }
