@@ -12,6 +12,7 @@ public class RandomSpawner : MonoBehaviour
 	public Vector3 startloc = new Vector3 (-9, 0.5f, 0);// the starting location of the block
 	public float direction  =  1; // pos = going  right, neg = going left
 
+
 	void Start()
 	{
 		InvokeRepeating("SpawnObject", minSpawnTime, minSpawnTime);

@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool isGrounded = true;
 	public float speed;
-	public float JumpSpeed = 100.0f;
+	public float JumpSpeed = 50.0f;
 	public Text winText;
 
 	void Start(){
@@ -16,14 +16,10 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-		//float moveUp = Input.GetAxis ("Jump");
-		//float moveUp = Input.GetKey (KeyCode.Space);
-		
-		//Vector3 jumper = new Vector3 (1, 1, 1);
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		rigidbody.AddForce(movement * speed * Time.deltaTime);
 		
-		if(Input.GetKeyUp (KeyCode.Space) && isGrounded) {
+		if(Input.GetKeyDown (KeyCode.Space) && isGrounded) {
 			rigidbody.AddForce(Vector3.up * JumpSpeed);
 			isGrounded = false;
 		}
@@ -31,14 +27,13 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter (Collision hit)
 	{
-		if(hit.gameObject.tag == "Ground")
-		{
+		if (hit.gameObject.tag == "Ground") {
 			isGrounded = true;
-		}
-		if(hit.gameObject.tag == "WinPlace")
-		{
-			winText.gameObject.SetActive(true);
-
+		} else if (hit.gameObject.tag == "WinPlace") {
+			winText.gameObject.SetActive (true);
+		} else if (hit.gameObject.tag == "Water") {
+			gameObject.transform.position = new Vector3(0,1,-17);
+			gameObject.rigidbody.velocity = new Vector3(0, 0, 0);
 		}
 	}
 
