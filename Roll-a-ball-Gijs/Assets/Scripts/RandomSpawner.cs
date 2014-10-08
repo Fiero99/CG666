@@ -3,9 +3,8 @@ using System.Collections;
 
 public class RandomSpawner : MonoBehaviour
 {
-	public GameObject[] spawnObject;    //somehow change this to incorporate multiple gameobject prefabs, will an array support that?
-	
-	//Would I create public variables for each prefab I want to be randomly chosen from, or would those be contained in the array above?
+	public GameObject[] spawnObject;
+	public GameObject car;
 	public float minSpawnTime = 0.1f;
 	public float spawnSpeed = 1.0f;
 	public GameObject[] spawns;
@@ -20,12 +19,13 @@ public class RandomSpawner : MonoBehaviour
 	
 	void SpawnObject()
 	{
-		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		cube.AddComponent<Rigidbody>();
+		//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		GameObject cube = GameObject.Instantiate(car) as GameObject;
+		//cube.AddComponent<Rigidbody>();
 		Rigidbody rigidcube = cube.rigidbody;
 		rigidcube.tag = ("Vehicle");
 		cube.transform.position = startloc;
-		rigidcube.renderer.material.color = Color.red;
+		//rigidcube.renderer.material.color = Color.red;
 	}
 
 
