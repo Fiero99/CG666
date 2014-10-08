@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool isGrounded = true;
 	public float speed;
-	public float JumpSpeed = 100.0f;
+	public float JumpSpeed = 50.0f;
 	public Text winText;
 
 	void Start(){
