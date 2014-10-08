@@ -27,14 +27,13 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter (Collision hit)
 	{
-		if(hit.gameObject.tag == "Ground")
-		{
+		if (hit.gameObject.tag == "Ground") {
 			isGrounded = true;
-		}
-		if(hit.gameObject.tag == "WinPlace")
-		{
-			winText.gameObject.SetActive(true);
-
+		} else if (hit.gameObject.tag == "WinPlace") {
+			winText.gameObject.SetActive (true);
+		} else if (hit.gameObject.tag == "Water") {
+			gameObject.transform.position = new Vector3(0,1,-17);
+			gameObject.rigidbody.velocity = new Vector3(0, 0, 0);
 		}
 	}
 
