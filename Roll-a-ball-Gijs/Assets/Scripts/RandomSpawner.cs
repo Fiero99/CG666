@@ -8,7 +8,7 @@ public class RandomSpawner : MonoBehaviour
 	public float minSpawnTime = 0.1f;
 	public float spawnSpeed = 1.0f;
 	public GameObject[] spawns;
-	public Vector3 startloc = new Vector3 (-9, 0.5f, 0);// the starting location of the block
+	public Vector3 startloc = new Vector3 (0, 0, 0);// the starting location of the block
 	public float direction  =  1; // pos = going  right, neg = going left
 
 
@@ -19,13 +19,10 @@ public class RandomSpawner : MonoBehaviour
 	
 	void SpawnObject()
 	{
-		//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
-		//cube.AddComponent<Rigidbody>();
 		Rigidbody rigidcube = cube.rigidbody;
 		rigidcube.tag = ("Vehicle");
 		cube.transform.position = startloc;
-		//rigidcube.renderer.material.color = Color.red;
 	}
 
 
