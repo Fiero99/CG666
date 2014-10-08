@@ -2,21 +2,10 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-	public bool isQuit = false;
-
-	void OnMouseEnter (){
-		renderer.material.color = Color.red;
+	public void OnClickStartButton(){
+		Application.LoadLevel ("MiniGame");
 	}
-
-	void OnMouseExit(){
-		renderer.material.color = Color.green;
-	}
-
-	void OnMouseDown(){
-		if (isQuit) {
-			Application.Quit ();
-		} else {
-			Application.LoadLevel(0);
-		}
+	public void OnClickQuitButton(){
+		Application.Quit();
 	}
 }
