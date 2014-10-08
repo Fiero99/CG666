@@ -14,9 +14,17 @@ public class RandomSpawner : MonoBehaviour
 
 	void Start()
 	{
-		InvokeRepeating("SpawnObject", minSpawnTime, minSpawnTime);
+		InvokeRepeating("RandomThing", 1f, 1.5f);
 	}
 	
+	void RandomThing()
+	{
+		float randomTime = Random.Range(2f, 6f );
+		print (randomTime);
+		
+		Invoke("SpawnObject", randomTime);
+	}
+
 	void SpawnObject()
 	{
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
@@ -34,7 +42,7 @@ public class RandomSpawner : MonoBehaviour
 		for(int i = 0; i < spawns.Length; i++)
 		{
 			spawns[i].transform.eulerAngles = new Vector3(0, 0, 0);
-			spawns[i].transform.Translate(new Vector3 (0.14f, 0, 0)*direction);
+			spawns[i].transform.Translate(new Vector3 (0.19f, 0, 0)*direction);
 		}
 
 	}
