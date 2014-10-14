@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class EastWallController : MonoBehaviour {
-
+public class WestWallController : MonoBehaviour {
+	
 	void OnCollisionEnter (Collision hit)
 	{
 		if (hit.gameObject.tag == "Vehicle") {

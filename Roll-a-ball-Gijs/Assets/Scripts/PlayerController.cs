@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float JumpSpeed = 50.0f;
 	public Text winText;
+	public Text deathText;
 
 	void Start(){
 		winText.gameObject.SetActive(false);
+		deathText.gameObject.SetActive(false);
 		}
 
 	void FixedUpdate () {
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (hit.gameObject.tag == "Ground") {
 			isGrounded = true;
+		} else if (hit.gameObject.tag == "Vehicle") {
+			deathText.gameObject.SetActive (true);
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
 		} else if (hit.gameObject.tag == "Water") {

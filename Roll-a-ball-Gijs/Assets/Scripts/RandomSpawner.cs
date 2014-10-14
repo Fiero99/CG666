@@ -8,28 +8,31 @@ public class RandomSpawner : MonoBehaviour
 	public float minSpawnTime = 0.1f;
 	public float spawnSpeed = 1.0f;
 	public GameObject[] spawns;
-	public Vector3 startloc = new Vector3 (0, 0, 0);// the starting location of the block
-	public float direction  =  1; // pos = going  right, neg = going left
+	public Vector3 startloc; // the starting location of the block
+	public float direction; // pos = going  right, neg = going left
 
 
 	void Start()
 	{
-		InvokeRepeating("RandomThing", 1f, 1.5f);
+		print ("RandomSpawn1");
+		InvokeRepeating("randomizer", 0, 1.3f);
 	}
-	
-	void RandomThing()
+
+	void randomizer()
 	{
-		float randomTime = Random.Range(2f, 6f );
-		print (randomTime);
-		
-		Invoke("SpawnObject", randomTime);
+		//float delay = Random.Range (0, 0.01f);
+		Invoke ("SpawnObject", 6f);
+
 	}
+
+
 
 	void SpawnObject()
 	{
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
 		Rigidbody rigidcube = cube.rigidbody;
 		rigidcube.tag = ("Vehicle");
+		//rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
 	}
 
@@ -37,7 +40,6 @@ public class RandomSpawner : MonoBehaviour
 	// find the vehicle objects and move them one step to the direction
 	void Update () {
 		spawns = GameObject.FindGameObjectsWithTag("Vehicle");
-		Vector3 pos = new Vector3 (0, 0.1f, 0);
 
 		for(int i = 0; i < spawns.Length; i++)
 		{
