@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RandomSpawner : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class RandomSpawner : MonoBehaviour
 	public GameObject car;
 	public float minSpawnTime = 0.1f;
 	public float spawnSpeed = 1.0f;
-	public GameObject[] spawns;
+	public List<GameObject> spawns;
 	public Vector3 startloc; // the starting location of the block
 	public Vector3 endloc;
 	public int speed;
@@ -35,22 +36,28 @@ public class RandomSpawner : MonoBehaviour
 		rigidcube.tag = ("Vehicle");
 		rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
+		spawns.Add (cube);
 	}
 
 
 	// find the vehicle objects and move them one step to the direction
 	void Update () {
-		        Vector3 diff = (endloc - startloc)/100;
-				spawns = GameObject.FindGameObjectsWithTag ("Vehicle");
-
-				for (int i = 0; i < spawns.Length; i++) {
-						spawns [i].transform.eulerAngles = new Vector3 (0, 0, 0);
-						spawns [i].transform.Translate (diff* speed);
-						if (spawns [i].transform.position.x > 12) {
-								Destroy (spawns [i]);
+				//spawns = GameObject.FindGameObjectsWithTag ("Vehicle");
+				Vector3 diff = (endloc - startloc);
+				float theta = Mathf.Rad2Deg * Mathf.Atan (diff.z / diff.x);
+		
+				foreach(var spawn in spawns.ToArray ()){
+						Vector3 curr = startloc - spawn.transform.position;
+						float dist = curr.magnitude;
+			
+						spawn.transform.eulerAngles = new Vector3 (0, 90 + theta, 0);
+						spawn.transform.Translate (0, 0, speed);
+				
+						if (dist >= diff.magnitude) {
+							spawns.Remove(spawn);				
+							Destroy(spawn);
 						}
-
 				}
 		}
-
 }
+
