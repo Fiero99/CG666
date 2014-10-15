@@ -11,7 +11,7 @@ public class RandomSpawner : MonoBehaviour
 	public List<GameObject> spawns;
 	public Vector3 startloc; // the starting location of the block
 	public Vector3 endloc;
-	public float speed;
+	public int speed;
 
 	
 	void Start()
@@ -50,14 +50,8 @@ public class RandomSpawner : MonoBehaviour
 						Vector3 curr = startloc - spawn.transform.position;
 						float dist = curr.magnitude;
 			
-						spawn.transform.eulerAngles = new Vector3 (0, 90 - theta, 0);
-
-						if (diff.x >0){
+						spawn.transform.eulerAngles = new Vector3 (0, 90 + theta, 0);
 						spawn.transform.Translate (0, 0, speed);
-						}else{
-							spawn.transform.Translate (0, 0, -speed);
-						}
-
 				
 						if (dist >= diff.magnitude) {
 							spawns.Remove(spawn);				
