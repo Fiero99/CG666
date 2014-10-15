@@ -16,13 +16,14 @@ public class RandomSpawner : MonoBehaviour
 	
 	void Start()
 	{
+		float delay = Random.Range (0, 1f);
 		print ("RandomSpawn1");
-		InvokeRepeating("randomizer", 0, 2f);
+		InvokeRepeating("randomizer", delay, 2f);
 	}
 
 	void randomizer()
 	{
-		//float delay = Random.Range (0, 0.01f);
+		float delay = Random.Range (0, 0.01f);
 		Invoke ("SpawnObject", 0);
 
 	}
@@ -60,4 +61,3 @@ public class RandomSpawner : MonoBehaviour
 				}
 		}
 }
-
