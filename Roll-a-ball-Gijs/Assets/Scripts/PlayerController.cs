@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour {
 	public float JumpSpeed = 50.0f;
 	public Text winText;
 	public Text deathText;
+	private float timer;
 
 	void Start(){
 		winText.gameObject.SetActive(false);
 		deathText.gameObject.SetActive(false);
+		timer = 0f;
 		}
 
 	void FixedUpdate () {
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+		timer += Time.deltaTime;
 		rigidbody.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 			StartCoroutine(WaitAndReturn(3));
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
+			StoreHighscore(timer);
 			StartCoroutine(WaitAndReturn(3));
 		} else if (hit.gameObject.tag == "Water") {
 			deathText.gameObject.SetActive (true);
@@ -52,4 +56,11 @@ public class PlayerController : MonoBehaviour {
 		Application.LoadLevel ("MainMenu");
 	}
 
+	void StoreHighscore(float newHighscore)
+	{
+		float oldHighscore = PlayerPrefs.GetFloat("highscore", 9999999999);  
+		if(newHighscore < oldHighscore)
+			PlayerPrefs.SetFloat("highscore", newHighscore);
+	}
+	
 }
