@@ -27,18 +27,29 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void Update () {
+		rigidbody.transform.eulerAngles = new Vector3 (0, 180, 0);
+	}
+
 	void OnCollisionEnter (Collision hit)
 	{
 		if (hit.gameObject.tag == "Ground") {
 			isGrounded = true;
 		} else if (hit.gameObject.tag == "Vehicle") {
 			deathText.gameObject.SetActive (true);
+			StartCoroutine(WaitAndReturn(3));
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
+			StartCoroutine(WaitAndReturn(3));
 		} else if (hit.gameObject.tag == "Water") {
-			gameObject.transform.position = new Vector3(0,1,-17);
-			gameObject.rigidbody.velocity = new Vector3(0, 0, 0);
+			deathText.gameObject.SetActive (true);
+			StartCoroutine(WaitAndReturn(3));
 		}
+	}
+
+	IEnumerator WaitAndReturn(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		Application.LoadLevel ("MainMenu");
 	}
 
 }
