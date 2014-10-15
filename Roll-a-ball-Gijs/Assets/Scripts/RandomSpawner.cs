@@ -11,20 +11,20 @@ public class RandomSpawner : MonoBehaviour
 	public List<GameObject> spawns;
 	public Vector3 startloc; // the starting location of the block
 	public Vector3 endloc;
-	public int speed;
+	public float speed;
+	public float anglecorr;
+	public float mindelay;
 
 	
 	void Start()
 	{
-		float delay = Random.Range (0, 1f);
-		print ("RandomSpawn1");
-		InvokeRepeating("randomizer", delay, 2f);
+		InvokeRepeating("randomizer", 3*speed , 1f);
 	}
 
 	void randomizer()
 	{
-		float delay = Random.Range (0, 0.01f);
-		Invoke ("SpawnObject", 0);
+		float delay = Random.Range ( 12.5f/speed, 30f/speed);
+		Invoke ("SpawnObject", delay);
 
 	}
 
@@ -45,15 +45,17 @@ public class RandomSpawner : MonoBehaviour
 	void Update () {
 				//spawns = GameObject.FindGameObjectsWithTag ("Vehicle");
 				Vector3 diff = (endloc - startloc);
+				Vector3 UnitDiff = diff / diff.magnitude;
 				float theta = Mathf.Rad2Deg * Mathf.Atan (diff.z / diff.x);
 		
 				foreach(var spawn in spawns.ToArray ()){
 						Vector3 curr = startloc - spawn.transform.position;
 						float dist = curr.magnitude;
-			
-						spawn.transform.eulerAngles = new Vector3 (0, 90 + theta, 0);
-						spawn.transform.Translate (0, 0, speed);
-				
+
+						spawn.transform.eulerAngles = new Vector3 (0, -theta + anglecorr , 0);
+				        spawn.transform.Translate( UnitDiff*speed, Space.World);
+
+
 						if (dist >= diff.magnitude) {
 							spawns.Remove(spawn);				
 							Destroy(spawn);
