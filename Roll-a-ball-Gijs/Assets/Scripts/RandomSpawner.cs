@@ -18,15 +18,15 @@ public class RandomSpawner : MonoBehaviour
 	
 	void Start()
 	{
-		float delay = Random.Range (0, 1f);
-		print ("RandomSpawn1");
-		InvokeRepeating("randomizer", delay, 2f);
+		float delay = Random.Range (5* speed, 30*speed);
+		Invoke("randomizer", delay);
 	}
 	
 	void randomizer()
 	{
-		float delay = Random.Range (0, 0.01f);
-		Invoke ("SpawnObject", 0);		
+		float delay = Random.Range ( 0.5f, 1f + 0.2f/speed);
+		print (delay);
+		Invoke ("SpawnObject", delay);		
 	}
 
 	void SpawnObject()
@@ -37,6 +37,8 @@ public class RandomSpawner : MonoBehaviour
 		rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
 		spawns.Add (cube);
+		float delay = Random.Range ( 0.5f, 1f + 0.2f/speed);
+		Invoke ("randomizer", delay);	
 	}
 
 
