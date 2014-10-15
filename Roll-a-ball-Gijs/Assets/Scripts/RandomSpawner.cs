@@ -18,17 +18,16 @@ public class RandomSpawner : MonoBehaviour
 	
 	void Start()
 	{
-		InvokeRepeating("randomizer", 3*speed , 1f);
+		float delay = Random.Range (0, 1f);
+		print ("RandomSpawn1");
+		InvokeRepeating("randomizer", delay, 2f);
 	}
-
+	
 	void randomizer()
 	{
-		float delay = Random.Range ( 12.5f/speed, 30f/speed);
-		Invoke ("SpawnObject", delay);
-
+		float delay = Random.Range (0, 0.01f);
+		Invoke ("SpawnObject", 0);		
 	}
-
-
 
 	void SpawnObject()
 	{
