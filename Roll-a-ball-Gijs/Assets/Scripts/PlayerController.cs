@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
-		timer += Time.deltaTime;
+		timer = timer + Time.deltaTime;
+		print ("Current timer: " + timer);
 		rigidbody.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 
 	void StoreHighscore(float newHighscore)
 	{
-		float oldHighscore = PlayerPrefs.GetFloat("highscore", 9999999999);  
+		float oldHighscore = PlayerPrefs.GetFloat("highscore", 9999999);  
 		if(newHighscore < oldHighscore)
 			PlayerPrefs.SetFloat("highscore", newHighscore);
 	}
