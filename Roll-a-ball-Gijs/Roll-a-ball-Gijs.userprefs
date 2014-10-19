@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RandomSpawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\RandomSpawner.cs" Line="31" Column="4" />
+      <File FileName="Assets\Scripts\RandomSpawner.cs" Line="38" Column="45" />
+      <File FileName="Assets\Scripts\RandomSpawner.cs" Line="65" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
