@@ -6,26 +6,26 @@ public class RandomSpawner : MonoBehaviour
 {
 	public GameObject[] spawnObject;
 	public GameObject car;
-	public float minSpawnTime = 0.1f;
-	public float spawnSpeed = 1.0f;
 	public List<GameObject> spawns;
 	public Vector3 startloc; // the starting location of the block
 	public Vector3 endloc;
 	public float speed;
 	public float anglecorr;
+<<<<<<< HEAD
+=======
 	public float mindelay;
+	public string giveTag;
+>>>>>>> origin/master
 
 	
 	void Start()
 	{
-		float delay = Random.Range (5* speed, 30*speed);
-		Invoke("randomizer", delay);
+		Invoke("randomizer", 0);
 	}
 	
 	void randomizer()
 	{
 		float delay = Random.Range ( 0.5f, 1f + 0.2f/speed);
-		print (delay);
 		Invoke ("SpawnObject", delay);		
 	}
 
@@ -33,7 +33,7 @@ public class RandomSpawner : MonoBehaviour
 	{
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
 		Rigidbody rigidcube = cube.rigidbody;
-		rigidcube.tag = ("Vehicle");
+		rigidcube.tag = (giveTag);
 		rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
 		spawns.Add (cube);

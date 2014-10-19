@@ -8,7 +8,7 @@ public class ScoreScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scoreText.text += " "+PlayerPrefs.GetFloat("highscore", 9999999999);
+		scoreText.text += " "+PlayerPrefs.GetFloat("highscore", 9999999999)+" seconds.";
 	}
 	
 	// Update is called once per frame

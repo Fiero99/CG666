@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 	public void OnClickStartButton(){
+		Invoke ("CountDown", 0);
 		Application.LoadLevel ("MiniGame");
 	}
 	public void OnClickQuitButton(){
@@ -12,6 +13,16 @@ public class MainMenu : MonoBehaviour {
 		Application.LoadLevel ("MainMenu");
 	}
 	public void OnClickScoreButton(){
-		Application.LoadLevel ("ScoreMenu");
+				Application.LoadLevel ("ScoreMenu");
 	}
+
+
+
+void CountDown()
+{
+	print("Woohoo");
+	
+	
+}
+
 }

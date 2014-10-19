@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public float JumpSpeed = 50.0f;
 	public Text winText;
 	public Text deathText;
-	private float timer;
+	public float timer;
 
 	void Start(){
 		winText.gameObject.SetActive(false);
@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
+		if (Input.GetKeyDown ("space")) {
+						print ("space key was pressed");
+				}
+
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		rigidbody.AddForce(movement * speed * Time.deltaTime);
 		
@@ -30,7 +34,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
-		timer += Time.deltaTime;
+		timer = timer + Time.deltaTime;
+		print ("Current timer: " + timer);
 		rigidbody.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 
@@ -44,10 +49,10 @@ public class PlayerController : MonoBehaviour {
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
 			StoreHighscore(timer);
-			StartCoroutine(WaitAndReturn(3));
+			StartCoroutine(WaitAndReturn(1));
 		} else if (hit.gameObject.tag == "Water") {
 			deathText.gameObject.SetActive (true);
-			StartCoroutine(WaitAndReturn(3));
+			StartCoroutine(WaitAndReturn(1));
 		}
 	}
 
@@ -58,9 +63,20 @@ public class PlayerController : MonoBehaviour {
 
 	void StoreHighscore(float newHighscore)
 	{
-		float oldHighscore = PlayerPrefs.GetFloat("highscore", 9999999999);  
+		float oldHighscore = PlayerPrefs.GetFloat("highscore", 9999999);  
 		if(newHighscore < oldHighscore)
 			PlayerPrefs.SetFloat("highscore", newHighscore);
 	}
-	
+
+
+	public void resettime()
+	{
+		timer = 0.0f;
+		print (timer);
+		}
+
+	public void resetloc()
+	{
+		transform.position = new Vector3(0,1.2f,-54);
+	}
 }
