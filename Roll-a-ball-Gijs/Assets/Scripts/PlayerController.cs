@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour {
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
 			StoreHighscore(timer);
-			StartCoroutine(WaitAndReturn(3));
+			StartCoroutine(WaitAndReturn(1));
 		} else if (hit.gameObject.tag == "Water") {
 			deathText.gameObject.SetActive (true);
-			StartCoroutine(WaitAndReturn(3));
+			StartCoroutine(WaitAndReturn(1));
 		}
 	}
 
