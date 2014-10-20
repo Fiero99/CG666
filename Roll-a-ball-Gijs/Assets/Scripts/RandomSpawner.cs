@@ -11,16 +11,14 @@ public class RandomSpawner : MonoBehaviour
 	public Vector3 endloc;
 	public float speed;
 	public float anglecorr;
-<<<<<<< HEAD
-=======
 	public float mindelay;
 	public string giveTag;
->>>>>>> origin/master
 
 	
 	void Start()
 	{
-		Invoke("randomizer", 0);
+		float delay = Random.Range ( 0.5f, 1f + 0.5f/speed);
+		Invoke("randomizer", delay);
 	}
 	
 	void randomizer()
@@ -54,7 +52,7 @@ public class RandomSpawner : MonoBehaviour
 						float dist = curr.magnitude;
 
 						spawn.transform.eulerAngles = new Vector3 (0, -theta + anglecorr , 0);
-				        spawn.transform.Translate( UnitDiff*speed, Space.World);
+				        spawn.transform.Translate( UnitDiff*speed*Time.timeScale, Space.World);
 
 
 						if (dist >= diff.magnitude) {

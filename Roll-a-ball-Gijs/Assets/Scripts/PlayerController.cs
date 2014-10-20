@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public Text winText;
 	public Text deathText;
 	public float timer;
+	private bool move = true;
 
 	void Start(){
 		winText.gameObject.SetActive(false);
@@ -25,7 +26,10 @@ public class PlayerController : MonoBehaviour {
 				}
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		rigidbody.AddForce(movement * speed * Time.deltaTime);
+
+		if (move) {
+				rigidbody.AddForce (movement * speed * Time.deltaTime);
+				}
 		
 		if(Input.GetKeyDown (KeyCode.Space) && isGrounded) {
 			rigidbody.AddForce(Vector3.up * JumpSpeed);
@@ -35,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 		timer = timer + Time.deltaTime;
-		print ("Current timer: " + timer);
+		//print ("Current timer: " + timer);
 		rigidbody.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 
@@ -75,8 +79,8 @@ public class PlayerController : MonoBehaviour {
 		print (timer);
 		}
 
-	public void resetloc()
+	public void stopmove( bool enable)
 	{
-		transform.position = new Vector3(0,1.2f,-54);
+		move = !(enable);
 	}
 }

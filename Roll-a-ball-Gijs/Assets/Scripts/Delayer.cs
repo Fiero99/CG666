@@ -15,22 +15,16 @@ public class Delayer : MonoBehaviour {
 
 	void Start()
 	{
-		notmove = true;
-		StartCoroutine(WaitAndFive(1));
-
+		Time.timeScale = 5.0F;
+		player.GetComponent<PlayerController>().stopmove(true);
+		StartCoroutine(WaitAndFive(Time.timeScale));
 	}
-
-	void FixedUpdate () {
-		if (notmove) {
-			// ensure player inmovability here
-			player.GetComponent<PlayerController>().resetloc();
-				}
-		}
-
 
 	void WaitAndGo() {
 		OneText.gameObject.SetActive (false);
 		notmove = false;
+		player.GetComponent<PlayerController>().stopmove(false);
+		Time.timeScale = 1.0F;
 		player.GetComponent<PlayerController>().resettime();
 		}
 
