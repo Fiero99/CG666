@@ -3,9 +3,10 @@
 var isPause = false;
 var PauseMenu : Rect = Rect(10,10,200, 200);
 var oldTimeScale = 1;
+var hide = false;
 
 function Update () {
-	Debug.Log(oldTimeScale);
+Debug.Log(hide + ", " + isPause);
 	if(Input.GetKeyDown(KeyCode.Escape)){
 		isPause = !isPause;
 		if(isPause){
@@ -15,13 +16,17 @@ function Update () {
 		else{
 			Time.timeScale = oldTimeScale;
 		}
-		
+	}
+	if(!isPause){
+		hide = false;
 	}
 }
 
 function OnGUI(){
 	if(isPause){
-		GUI.Window(0, PauseMenu, ThePauseMenu, "Pause Menu");
+		if(!hide){ //hide = false
+			GUI.Window(0, PauseMenu, ThePauseMenu, "Pause Menu");
+		}
 	}
 }
 
@@ -38,6 +43,8 @@ function ThePauseMenu(){
 	if(GUILayout.Button("Cancel")){
 		//when pressing the escape button again it
 		// closes the windows, but it should work with a button too.
+		hide = true;
+		isPause = false;
 	}
 	
 }
