@@ -2,19 +2,18 @@
 
 var isPause = false;
 var PauseMenu : Rect = Rect(10,10,200, 200);
-
-function Start () {
-
-}
+var oldTimeScale = 1;
 
 function Update () {
+	Debug.Log(oldTimeScale);
 	if(Input.GetKeyDown(KeyCode.Escape)){
 		isPause = !isPause;
 		if(isPause){
+			oldTimeScale = Time.timeScale;
 			Time.timeScale = 0;
 		}
 		else{
-			Time.timeScale = 1;
+			Time.timeScale = oldTimeScale;
 		}
 		
 	}
