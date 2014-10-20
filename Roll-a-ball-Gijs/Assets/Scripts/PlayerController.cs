@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 			isGrounded = true;
 		} else if (hit.gameObject.tag == "Vehicle") {
 			deathText.gameObject.SetActive (true);
-			StartCoroutine(WaitAndReturn(3));
+			StartCoroutine(WaitAndReturn(1));
 		} else if (hit.gameObject.tag == "WinPlace") {
 			winText.gameObject.SetActive (true);
 			StoreHighscore(timer);

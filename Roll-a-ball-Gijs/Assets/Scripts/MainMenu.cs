@@ -13,7 +13,11 @@ public class MainMenu : MonoBehaviour {
 		Application.LoadLevel ("MainMenu");
 	}
 	public void OnClickScoreButton(){
-				Application.LoadLevel ("ScoreMenu");
+		Application.LoadLevel ("ScoreMenu");
+	}
+	public void OnClickResetButton(){
+		PlayerPrefs.SetFloat("highscore", 9999999);
+		Application.LoadLevel ("ScoreMenu");
 	}
 
 
