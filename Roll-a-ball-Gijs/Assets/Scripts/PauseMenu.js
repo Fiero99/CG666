@@ -6,7 +6,6 @@ var oldTimeScale = 1;
 var hide = false;
 
 function Update () {
-Debug.Log(hide + ", " + isPause);
 	if(Input.GetKeyDown(KeyCode.Escape)){
 		isPause = !isPause;
 		if(isPause){
@@ -24,7 +23,7 @@ Debug.Log(hide + ", " + isPause);
 
 function OnGUI(){
 	if(isPause){
-		if(!hide){ //hide = false
+		if(!hide){
 			GUI.Window(0, PauseMenu, ThePauseMenu, "Pause Menu");
 		}
 	}
@@ -41,8 +40,6 @@ function ThePauseMenu(){
 		Application.Quit();
 	}
 	if(GUILayout.Button("Cancel")){
-		//when pressing the escape button again it
-		// closes the windows, but it should work with a button too.
 		hide = true;
 		isPause = false;
 	}
