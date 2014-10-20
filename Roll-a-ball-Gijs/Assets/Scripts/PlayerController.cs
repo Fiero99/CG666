@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 		if (hit.gameObject.tag == "Ground") {
 			isGrounded = true;
 		} else if (hit.gameObject.tag == "Vehicle") {
+			move = false;
 			deathText.gameObject.SetActive (true);
 			StartCoroutine(WaitAndReturn(1));
 		} else if (hit.gameObject.tag == "WinPlace") {

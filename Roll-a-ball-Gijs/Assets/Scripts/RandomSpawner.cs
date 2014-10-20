@@ -12,7 +12,6 @@ public class RandomSpawner : MonoBehaviour
 	public float speed;
 	public float anglecorr;
 	public float mindelay;
-	public string giveTag;
 
 	
 	void Start()
@@ -31,7 +30,7 @@ public class RandomSpawner : MonoBehaviour
 	{
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
 		Rigidbody rigidcube = cube.rigidbody;
-		rigidcube.tag = (giveTag);
+		rigidcube.tag = ("Vehicle");
 		rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
 		spawns.Add (cube);
