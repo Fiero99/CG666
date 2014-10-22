@@ -30,7 +30,6 @@ public class RandomSpawner : MonoBehaviour
 	{
 		GameObject cube = GameObject.Instantiate(car) as GameObject;
 		Rigidbody rigidcube = cube.rigidbody;
-		rigidcube.tag = ("Vehicle");
 		rigidcube.isKinematic = true;
 		cube.transform.position = startloc;
 		spawns.Add (cube);
